@@ -66,7 +66,7 @@ public class Scan {
                     flagOfScan = true;
                 } else if (inputNumber == 2) {
                     inputOfBase = "Calzone";
-
+                    flagOfScan = true;
                 } else {
                     System.out.println("Please, input the digit 1 or 2");
                 }
@@ -79,33 +79,50 @@ public class Scan {
 
     public String scanOfIngredients() {
         String ingredient = "";
-        System.out.println("Please choose the ingredient typing its numbers (you can't choose the same element twice) :  \n 1. Tomato Paste - 1 EUR \n 2. Cheese - 1 EUR \n 3. Salami - 1.5 EUR \n 4. Bacon - 1.2 EUR \n 5. Garlic - 0.3 EUR \n 6. Corn - 0.7 EUR \n 7. Peperroni - 0.6 EUR \n 8. Olives - 0.5 EUR\n If you want to add nothing - press 0." );
+        System.out.println("Please choose the ingredient typing its numbers (you can't choose the same element twice) :  \n 1. Tomato Paste - 1 EUR \n 2. Cheese - 1 EUR \n 3. Salami - 1.5 EUR \n 4. Bacon - 1.2 EUR \n 5. Garlic - 0.3 EUR \n 6. Corn - 0.7 EUR \n 7. Peperroni - 0.6 EUR \n 8. Olives - 0.5 EUR\n If you want to add nothing - press 0.");
         int inputNumber = 0;
         boolean flagOfScan = false;
         while (!flagOfScan) {
             Scanner scIngredient = new Scanner(System.in);
             try {
                 inputNumber = scIngredient.nextInt();
-                if (inputNumber > 0 && inputNumber < 9) {
+                if (inputNumber >= 0 && inputNumber < 9) {
                     switch (inputNumber) {
                         case 1:
                             ingredient = "Tomato Paste";
+                            flagOfScan=true;
                             break;
-                        case 2: ingredient = "Cheese";
-                        break;
-                        case 3: ingredient = "Salami";
-                        break;
-                        case 4: ingredient = "Bacon";
-                        break;
-                        case 5: ingredient = "Garlic";
-                        break;
-                        case 6: ingredient = "Corn";
-                        break;
-                        case 7: ingredient = "Pepperoni";
-                        break;
-                        case 8: ingredient = "Olives";
-                        break;
-                        case 0: ingredient = "Empty";
+                        case 2:
+                            ingredient = "Cheese";
+                            flagOfScan=true;
+                            break;
+                        case 3:
+                            ingredient = "Salami";
+                            flagOfScan=true;
+                            break;
+                        case 4:
+                            ingredient = "Bacon";
+                            flagOfScan=true;
+                            break;
+                        case 5:
+                            ingredient = "Garlic";
+                            flagOfScan=true;
+                            break;
+                        case 6:
+                            ingredient = "Corn";
+                            flagOfScan=true;
+                            break;
+                        case 7:
+                            ingredient = "Pepperoni";
+                            flagOfScan=true;
+                            break;
+                        case 8:
+                            ingredient = "Olives";
+                            flagOfScan=true;
+                            break;
+                        case 0:
+                            flagOfScan=true;
+                            break;
                     }
                 } else {
                     System.out.println("Please, input the digit between 1 or 8");

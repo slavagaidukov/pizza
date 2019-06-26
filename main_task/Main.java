@@ -10,17 +10,19 @@ public class Main {
     pizzas.checkPizzaName("Slav",2,1001);
 */
         Scan scan = new Scan();
-        Order orderOne = new Order (10001,1001,scan.scanOfKindsAmount());
+        Order orderOne = new Order(10001, 1001, scan.scanOfKindsAmount());
         //цикл, передать аргументом кол-во видов пицц
-        Pizza pizza = new Pizza(scan.scanOfPizzaType());
-        pizza.checkPizzaName(scan.scanOfString(),scan.scanOfPizzaAmount(),1001);
 
-        pizza.addIngredient();
+        Pizza pizza = new Pizza();
+        pizza.setPizzaType(scan.scanOfPizzaType());
 
-
-
-
+        pizza.checkPizzaName(scan.scanOfString(), scan.scanOfPizzaAmount(), 1001);
+        for (int i = 0; i < 8; i++) {
+            pizza.addIngredient(i);
+        }
+        pizza.checkAdd();
+        System.out.println(orderOne);
 
 
     }
-        }
+}
