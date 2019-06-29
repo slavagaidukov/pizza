@@ -3,6 +3,26 @@ package com.epam.main_task;
 import java.util.Scanner;
 
 public class Scan {
+    public int scanOfIngredientsAmount () {
+        System.out.println("How many ingredients do you want to order? (max - 7)\n 1. Tomato Paste - 1 EUR \n 2. Cheese - 1 EUR \n 3. Salami - 1.5 EUR \n 4. Bacon - 1.2 EUR \n 5. Garlic - 0.3 EUR \n 6. Corn - 0.7 EUR \n 7. Peperroni - 0.6 EUR \n 8. Olives - 0.5 EUR ");
+        int inputNumber = 0;
+        boolean flagOfScan = false;
+        while (!flagOfScan) {
+            Scanner scInt = new Scanner(System.in);
+            try {
+                inputNumber = scInt.nextInt();
+                if (inputNumber > 0 && inputNumber < 7) {
+                    flagOfScan = true;
+                } else {
+                    System.out.println("Please, input the digit between 1 and 7");
+                }
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Please, input the digit between 1 and 7");
+            }
+        }
+        return inputNumber;
+    }
+
     public int scanOfKindsAmount() {
         System.out.println("How many kinds of pizza do you want to order? (max - 10)");
         int inputNumber = 0;
@@ -24,14 +44,14 @@ public class Scan {
     }
 
     public int scanOfPizzaAmount() {
-        System.out.println("How many pizza do you want to order? (max - 10)");
+        System.out.println("How many pizza do you want to order? (max - 20)");
         int inputNumber = 0;
         boolean flagOfScan = false;
         while (!flagOfScan) {
             Scanner scInt = new Scanner(System.in);
             try {
                 inputNumber = scInt.nextInt();
-                if (inputNumber > 0 && inputNumber < 11) {
+                if (inputNumber > 0 && inputNumber < 21) {
                     flagOfScan = true;
                 } else {
                     System.out.println("Please, input the digit between 1 and 10");
@@ -80,13 +100,13 @@ public class Scan {
     public String scanOfIngredients() {
         String ingredient = "";
         System.out.println("Please choose the ingredient typing its numbers (you can't choose the same element twice) :  \n 1. Tomato Paste - 1 EUR \n 2. Cheese - 1 EUR \n 3. Salami - 1.5 EUR \n 4. Bacon - 1.2 EUR \n 5. Garlic - 0.3 EUR \n 6. Corn - 0.7 EUR \n 7. Peperroni - 0.6 EUR \n 8. Olives - 0.5 EUR\n If you want to add nothing - press 0.");
-        int inputNumber = 0;
+        int inputNumber;
         boolean flagOfScan = false;
         while (!flagOfScan) {
             Scanner scIngredient = new Scanner(System.in);
             try {
                 inputNumber = scIngredient.nextInt();
-                if (inputNumber >= 0 && inputNumber < 9) {
+                if (inputNumber > 0 && inputNumber < 9) {
                     switch (inputNumber) {
                         case 1:
                             ingredient = "Tomato Paste";
@@ -118,9 +138,6 @@ public class Scan {
                             break;
                         case 8:
                             ingredient = "Olives";
-                            flagOfScan=true;
-                            break;
-                        case 0:
                             flagOfScan=true;
                             break;
                     }

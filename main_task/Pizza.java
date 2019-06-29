@@ -13,12 +13,27 @@ public class Pizza {
 
     private String pizzaName;
 
+
     public String[] getIngredients() {
         return ingredients;
     }
 
-    private String[] ingredients = {"", "", "", "", "", "", "", ""};
+    public void setIngredients(int amountOfIngredients) {
+        this.ingredients = new String[amountOfIngredients];
+        }
+
+    private String[] ingredients;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     private int amount;
+
 
     public void setPizzaType(String pizzaType) {
         this.pizzaType = pizzaType;
@@ -37,7 +52,6 @@ public class Pizza {
         } else {
             this.pizzaName = (String.valueOf(userID) + "_" + String.valueOf(amount));
         }
-        System.out.println(pizzaName);
         return pizzaName;
     }
 
@@ -47,24 +61,20 @@ public class Pizza {
         return amount;
     }
 
-    public void addIngredient(int numberOfIngredient) {
+    public String addIngredient(int numberOfIngredient) {
         Scan ingredientsScan = new Scan();
         String ingred = "";
         boolean flagOfAddIngredient = false;
         while (!flagOfAddIngredient) {
-            ingred = ingredientsScan.scanOfIngredients();
-            if (numberOfIngredient == 7 && ingred.equals("")) {
-                flagOfAddIngredient = true;
-            } else if (numberOfIngredient == 7 && !ingred.equals("")) {
-                System.out.println("Your pizza is full");
-                flagOfAddIngredient = true;
-            } else if (!Arrays.asList(ingredients).contains(ingred) || ingred.equals("")) {
+          ingred = ingredientsScan.scanOfIngredients();
+         if (!Arrays.asList(ingredients).contains(ingred) || ingred.equals("")) {
                 this.ingredients[numberOfIngredient] = ingred;
                 flagOfAddIngredient = true;
             } else {
                 System.out.println("Please, choose another ingredient");
             }
         }
+        return ingred;
     }
 
     public void checkAdd() {
@@ -73,14 +83,6 @@ public class Pizza {
         }
     }
 
-    ;
-
-           /* if (!ingredients[i].equals(ingred)) {
-                this.ingredients[numberOfIngredient] = ingred;
-            } else {
-                System.out.println("Please, choose another ingredient");
-            }
-*/
 }
 
 
