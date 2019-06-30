@@ -1,4 +1,4 @@
-package com.epam.main_task;
+package com.epam.main_task.models;
 
 import java.time.LocalTime;
 
@@ -25,7 +25,7 @@ public class Order {
 
     public void setSumOfOrder(int amountOfOrder) {
         for (int i = 0; i < amountOfOrder; i++) {
-            sumOfOrder = sumOfOrder + this.pizza[i].getSumOfPizza()*this.pizza[i].getAmount();
+            sumOfOrder = sumOfOrder + this.pizza[i].getSumOfPizza() * this.pizza[i].getAmount();
         }
     }
 
@@ -47,15 +47,15 @@ public class Order {
     public String toString() {
         orderDescription = "***********************" + "\nЗаказ: " + numberOfOrder + "\nКлиент: " + userID;
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < this.pizza.length ; i++) {
+        for (int i = 0; i < this.pizza.length; i++) {
             pizzaDescription = "\nНазвание: " + this.pizza[i].getPizzaName() + "\n" +
                     "---------------------------\n" + pizza[i].getPizzaType() + " " + pizza[i].getPriceOfPizzaBase() + " EUR";
             sb.append(pizzaDescription);
-            for (int j = 0; j < pizza[i].getIngredients().length ; j++) {
+            for (int j = 0; j < pizza[i].getIngredients().length; j++) {
                 pizzaDescription = "\n" + pizza[i].getIngredients()[j] + " " + pizza[i].getPrice()[j] + " EUR";
                 sb.append(pizzaDescription);
             }
-            pizzaDescription ="\n---------------------------\n" +
+            pizzaDescription = "\n---------------------------\n" +
                     "Всего: " + pizza[i].getSumOfPizza() + " EUR" + "\n" +
                     "Количество: " + this.pizza[i].getAmount() + "\n" +
                     "---------------------------";

@@ -13,9 +13,9 @@ public class PizzaMessages {
         map();
     }
 
-    public static String getMessage(String messageKey){
+    public static String getMessage(String messageKey) {
         String message = hashMap.get(messageKey);
-        return message != null ? message  :  "[" + messageKey + "]";
+        return message != null ? message : "[" + messageKey + "]";
     }
 
     private static void map() {

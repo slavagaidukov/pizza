@@ -1,4 +1,6 @@
-package com.epam.main_task;
+package com.epam.main_task.models;
+
+import com.epam.main_task.scan.Scan;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -12,8 +14,8 @@ public class Pizza {
     }
 
     public void setSumOfPizza() {
-        for (int i = 0; i < this.getPrice().length ; i++) {
-            sumOfPizza = sumOfPizza+getPrice()[i];
+        for (int i = 0; i < this.getPrice().length; i++) {
+            sumOfPizza = sumOfPizza + getPrice()[i];
         }
         sumOfPizza = sumOfPizza + getPriceOfPizzaBase();
     }
@@ -27,23 +29,31 @@ public class Pizza {
     public void setPrice(int amountOfIngredients) {
         this.price = new double[amountOfIngredients];
         for (int i = 0; i < amountOfIngredients; i++) {
-            switch (this.ingredients[i]){
-                case "Tomato Paste": this.price[i]=1;
-                break;
-                case "Cheese": this.price[i] = 1;
-                break;
-                case "Salami": this.price[i] = 1.5;
-                break;
-                case "Bacon": this.price[i] = 1.2;
-                break;
-                case "Garlic": this.price[i] = 0.3;
-                break;
-                case "Corn": this.price[i] = 0.7;
-                break;
-                case "Pepperoni": this.price[i] = 0.6;
-                break;
-                case "Olives": this.price[i] = 0.5;
-                break;
+            switch (this.ingredients[i]) {
+                case "Tomato Paste":
+                    this.price[i] = 1;
+                    break;
+                case "Cheese":
+                    this.price[i] = 1;
+                    break;
+                case "Salami":
+                    this.price[i] = 1.5;
+                    break;
+                case "Bacon":
+                    this.price[i] = 1.2;
+                    break;
+                case "Garlic":
+                    this.price[i] = 0.3;
+                    break;
+                case "Corn":
+                    this.price[i] = 0.7;
+                    break;
+                case "Pepper":
+                    this.price[i] = 0.6;
+                    break;
+                case "Olives":
+                    this.price[i] = 0.5;
+                    break;
             }
         }
     }
@@ -63,7 +73,7 @@ public class Pizza {
 
     public void setIngredients(int amountOfIngredients) {
         this.ingredients = new String[amountOfIngredients];
-        }
+    }
 
     private String[] ingredients;
 
@@ -89,10 +99,9 @@ public class Pizza {
 
     public void setPizzaType(String pizzaType) {
         this.pizzaType = pizzaType;
-        if (pizzaType=="Pizza base") {
+        if (pizzaType == "Pizza base") {
             setPriceOfPizzaBase(1.0);
-        }
-        else {
+        } else {
             setPriceOfPizzaBase(1.5);
         }
     }
@@ -102,7 +111,6 @@ public class Pizza {
     }
 
     private String pizzaType;
-
 
 
     public String checkPizzaName(String pizzaNameNotChecked, int amount, int userID) {
@@ -128,12 +136,10 @@ public class Pizza {
         String ingred = "";
         boolean flagOfAddIngredient = false;
         while (!flagOfAddIngredient) {
-          ingred = ingredientsScan.scanOfIngredients();
-         if (!Arrays.asList(ingredients).contains(ingred) || ingred.equals("")) {
+            ingred = ingredientsScan.scanOfIngredients();
+            if (!Arrays.asList(ingredients).contains(ingred)) {
                 this.ingredients[numberOfIngredient] = ingred;
                 flagOfAddIngredient = true;
-            } else {
-                System.out.println("Please, choose another ingredient");
             }
         }
         return ingred;

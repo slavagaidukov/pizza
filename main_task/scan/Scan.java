@@ -1,30 +1,55 @@
-package com.epam.main_task;
+package com.epam.main_task.scan;
+
+import com.epam.main_task.messages.MessageKeys;
+import com.epam.main_task.messages.PizzaMessages;
 
 import java.util.Scanner;
 
 public class Scan {
-    public int scanOfIngredientsAmount () {
-        System.out.println("How many ingredients do you want to order? (max - 7)\n 1. Tomato Paste - 1 EUR \n 2. Cheese - 1 EUR \n 3. Salami - 1.5 EUR \n 4. Bacon - 1.2 EUR \n 5. Garlic - 0.3 EUR \n 6. Corn - 0.7 EUR \n 7. Peperroni - 0.6 EUR \n 8. Olives - 0.5 EUR ");
+
+    public int scanOfAmountChange() {
         int inputNumber = 0;
         boolean flagOfScan = false;
         while (!flagOfScan) {
             Scanner scInt = new Scanner(System.in);
             try {
                 inputNumber = scInt.nextInt();
-                if (inputNumber > 0 && inputNumber < 7) {
+                if (inputNumber == 1) {
+                    flagOfScan = true;
+                } else if (inputNumber == 2) {
                     flagOfScan = true;
                 } else {
-                    System.out.println("Please, input the digit between 1 and 7");
+                    System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_TWO));
                 }
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Please, input the digit between 1 and 7");
+                System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_TWO));
+            }
+        }
+        return inputNumber;
+    }
+
+    public int scanOfIngredientsAmount() {
+        System.out.println(PizzaMessages.getMessage(MessageKeys.INGREDIENTS_AMOUNT));
+        int inputNumber = 0;
+        boolean flagOfScan = false;
+        while (!flagOfScan) {
+            Scanner scInt = new Scanner(System.in);
+            try {
+                inputNumber = scInt.nextInt();
+                if (inputNumber >= 0 && inputNumber < 7) {
+                    flagOfScan = true;
+                } else {
+                    System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_SEVEN));
+                }
+            } catch (java.util.InputMismatchException e) {
+                System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_SEVEN));
             }
         }
         return inputNumber;
     }
 
     public int scanOfKindsAmount() {
-        System.out.println("How many kinds of pizza do you want to order? (max - 10)");
+        System.out.println(PizzaMessages.getMessage(MessageKeys.PIZZA_KINDS));
         int inputNumber = 0;
         boolean flagOfScan = false;
         while (!flagOfScan) {
@@ -34,17 +59,17 @@ public class Scan {
                 if (inputNumber > 0 && inputNumber < 11) {
                     flagOfScan = true;
                 } else {
-                    System.out.println("Please, input the digit between 1 and 10");
+                    System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_TEN));
                 }
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Please, input the digit between 1 and 10");
+                System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_TEN));
             }
         }
         return inputNumber;
     }
 
     public int scanOfPizzaAmount() {
-        System.out.println("How many pizza do you want to order? (max - 20)");
+        System.out.println(PizzaMessages.getMessage(MessageKeys.PIZZA_AMOUNT));
         int inputNumber = 0;
         boolean flagOfScan = false;
         while (!flagOfScan) {
@@ -54,10 +79,10 @@ public class Scan {
                 if (inputNumber > 0 && inputNumber < 21) {
                     flagOfScan = true;
                 } else {
-                    System.out.println("Please, input the digit between 1 and 10");
+                    System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_TWENTY));
                 }
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Please, input the digit between 1 and 10");
+                System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_TWENTY));
             }
         }
         return inputNumber;
@@ -65,7 +90,7 @@ public class Scan {
 
 
     public String scanOfString() {
-        System.out.println("Please, type the name of your pizza");
+        System.out.println(PizzaMessages.getMessage(MessageKeys.PIZZA_NAME));
         String inputString;
         Scanner scString = new Scanner(System.in);
         inputString = scString.next();
@@ -73,7 +98,7 @@ public class Scan {
     }
 
     public String scanOfPizzaType() {
-        System.out.println("The price of the base of the pizza - 1 EUR. If you want to order closed-type pizza (Calzone - 1.5 EUR) - please, type '2' or '1' for the usual base. ");
+        System.out.println(PizzaMessages.getMessage(MessageKeys.PIZZA_TYPE));
         int inputNumber = 0;
         String inputOfBase = "";
         boolean flagOfScan = false;
@@ -88,10 +113,10 @@ public class Scan {
                     inputOfBase = "Pizza base (Calzone)";
                     flagOfScan = true;
                 } else {
-                    System.out.println("Please, input the digit 1 or 2");
+                    System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_TWO));
                 }
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Please, input the digit 1 or 2");
+                System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_TWO));
             }
         }
         return inputOfBase;
@@ -99,7 +124,7 @@ public class Scan {
 
     public String scanOfIngredients() {
         String ingredient = "";
-        System.out.println("Please choose the ingredient typing its numbers (you can't choose the same element twice) :  \n 1. Tomato Paste - 1 EUR \n 2. Cheese - 1 EUR \n 3. Salami - 1.5 EUR \n 4. Bacon - 1.2 EUR \n 5. Garlic - 0.3 EUR \n 6. Corn - 0.7 EUR \n 7. Peperroni - 0.6 EUR \n 8. Olives - 0.5 EUR\n If you want to add nothing - press 0.");
+        System.out.println(PizzaMessages.getMessage(MessageKeys.NEW_INGREDIENT));
         int inputNumber;
         boolean flagOfScan = false;
         while (!flagOfScan) {
@@ -110,42 +135,42 @@ public class Scan {
                     switch (inputNumber) {
                         case 1:
                             ingredient = "Tomato Paste";
-                            flagOfScan=true;
+                            flagOfScan = true;
                             break;
                         case 2:
                             ingredient = "Cheese";
-                            flagOfScan=true;
+                            flagOfScan = true;
                             break;
                         case 3:
                             ingredient = "Salami";
-                            flagOfScan=true;
+                            flagOfScan = true;
                             break;
                         case 4:
                             ingredient = "Bacon";
-                            flagOfScan=true;
+                            flagOfScan = true;
                             break;
                         case 5:
                             ingredient = "Garlic";
-                            flagOfScan=true;
+                            flagOfScan = true;
                             break;
                         case 6:
                             ingredient = "Corn";
-                            flagOfScan=true;
+                            flagOfScan = true;
                             break;
                         case 7:
-                            ingredient = "Pepperoni";
-                            flagOfScan=true;
+                            ingredient = "Pepper";
+                            flagOfScan = true;
                             break;
                         case 8:
                             ingredient = "Olives";
-                            flagOfScan=true;
+                            flagOfScan = true;
                             break;
                     }
                 } else {
-                    System.out.println("Please, input the digit between 1 or 8");
+                    System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_EIGHT));
                 }
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Please, input the digit between 1 or 8");
+                System.out.println(PizzaMessages.getMessage(MessageKeys.DIGIT_EIGHT));
             }
         }
         return ingredient;
