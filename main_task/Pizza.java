@@ -7,6 +7,49 @@ import java.util.regex.Pattern;
 public class Pizza {
 
 
+    public double getSumOfPizza() {
+        return sumOfPizza;
+    }
+
+    public void setSumOfPizza() {
+        for (int i = 0; i < this.getPrice().length ; i++) {
+            sumOfPizza = sumOfPizza+getPrice()[i];
+        }
+        sumOfPizza = sumOfPizza + getPriceOfPizzaBase();
+    }
+
+    private double sumOfPizza;
+
+    public double[] getPrice() {
+        return price;
+    }
+
+    public void setPrice(int amountOfIngredients) {
+        this.price = new double[amountOfIngredients];
+        for (int i = 0; i < amountOfIngredients; i++) {
+            switch (this.ingredients[i]){
+                case "Tomato Paste": this.price[i]=1;
+                break;
+                case "Cheese": this.price[i] = 1;
+                break;
+                case "Salami": this.price[i] = 1.5;
+                break;
+                case "Bacon": this.price[i] = 1.2;
+                break;
+                case "Garlic": this.price[i] = 0.3;
+                break;
+                case "Corn": this.price[i] = 0.7;
+                break;
+                case "Pepperoni": this.price[i] = 0.6;
+                break;
+                case "Olives": this.price[i] = 0.5;
+                break;
+            }
+        }
+    }
+
+    private double[] price;
+
     public String getPizzaName() {
         return pizzaName;
     }
@@ -34,9 +77,28 @@ public class Pizza {
 
     private int amount;
 
+    public double getPriceOfPizzaBase() {
+        return priceOfPizzaBase;
+    }
+
+    public void setPriceOfPizzaBase(double priceOfPizzaBase) {
+        this.priceOfPizzaBase = priceOfPizzaBase;
+    }
+
+    private double priceOfPizzaBase;
 
     public void setPizzaType(String pizzaType) {
         this.pizzaType = pizzaType;
+        if (pizzaType=="Pizza base") {
+            setPriceOfPizzaBase(1.0);
+        }
+        else {
+            setPriceOfPizzaBase(1.5);
+        }
+    }
+
+    public String getPizzaType() {
+        return pizzaType;
     }
 
     private String pizzaType;
@@ -76,13 +138,6 @@ public class Pizza {
         }
         return ingred;
     }
-
-    public void checkAdd() {
-        for (int i = 0; i < ingredients.length; i++) {
-            System.out.println(ingredients[i]);
-        }
-    }
-
 }
 
 

@@ -1,7 +1,13 @@
 package com.epam.main_task;
 
+import java.time.LocalTime;
 
 public class Order {
+    public LocalTime getLocalTime() {
+        return localTime;
+    }
+
+    private LocalTime localTime = LocalTime.now();
     private int numberOfOrder;
     private int userID;
 
@@ -12,6 +18,18 @@ public class Order {
     private Pizza[] pizza;
     private String orderDescription;
     private String pizzaDescription;
+
+    public double getSumOfOrder() {
+        return sumOfOrder;
+    }
+
+    public void setSumOfOrder(int amountOfOrder) {
+        for (int i = 0; i < amountOfOrder; i++) {
+            sumOfOrder = sumOfOrder + this.pizza[i].getSumOfPizza()*this.pizza[i].getAmount();
+        }
+    }
+
+    private double sumOfOrder;
 
     public Order(int numberOfOrder, int userID, int pizzaKinds) {
         this.numberOfOrder = numberOfOrder;
@@ -28,25 +46,23 @@ public class Order {
 
     public String toString() {
         orderDescription = "***********************" + "\nЗаказ: " + numberOfOrder + "\nКлиент: " + userID;
-        //for (int i = 0; i < this.pizza.length; i++) {
-        //      for (int j = 0; j < this.pizza[i].getIngredients().length ; j++) {
-        //pizzaDescription = this.pizza[0].getPizzaName() + "\n-----------------------";
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.pizza.length ; i++) {
             pizzaDescription = "\nНазвание: " + this.pizza[i].getPizzaName() + "\n" +
-                    "---------------------";
+                    "---------------------------\n" + pizza[i].getPizzaType() + " " + pizza[i].getPriceOfPizzaBase() + " EUR";
             sb.append(pizzaDescription);
             for (int j = 0; j < pizza[i].getIngredients().length ; j++) {
-                pizzaDescription = "\n" + pizza[i].getIngredients()[j] + " " + "EUR";
+                pizzaDescription = "\n" + pizza[i].getIngredients()[j] + " " + pizza[i].getPrice()[j] + " EUR";
                 sb.append(pizzaDescription);
             }
-            pizzaDescription ="\n-----------------------\n" +
-                    "Всего: " + " " + "EUR" + "\n" +
+            pizzaDescription ="\n---------------------------\n" +
+                    "Всего: " + pizza[i].getSumOfPizza() + " EUR" + "\n" +
                     "Количество: " + this.pizza[i].getAmount() + "\n" +
-                    "-------------------------";
+                    "---------------------------";
             sb.append(pizzaDescription);
         }
-        sb.append("\nОбщая сумма: " + " " + "EUR");
+        sb.append("\nОбщая сумма: " + getSumOfOrder() + " EUR");
+        System.out.println(getLocalTime());
         return orderDescription + sb.toString();
     }
 }

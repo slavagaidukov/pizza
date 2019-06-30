@@ -85,7 +85,7 @@ public class Scan {
                     inputOfBase = "Pizza base";
                     flagOfScan = true;
                 } else if (inputNumber == 2) {
-                    inputOfBase = "Calzone";
+                    inputOfBase = "Pizza base (Calzone)";
                     flagOfScan = true;
                 } else {
                     System.out.println("Please, input the digit 1 or 2");
